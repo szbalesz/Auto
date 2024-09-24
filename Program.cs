@@ -88,6 +88,20 @@ namespace Auto
             Console.WriteLine($"\nMárka: {reader.GetString(1)}\nTípus: {reader.GetString(2)}\nMotorszám: {reader.GetString(3)}\nGyártási év: {reader.GetInt32(4)}");
             conn.Connection.Close();
         }
+        public static void getCarsAfter2000()
+        {
+            conn.Connection.Open();
+            string sql = $"SELECT * FROM `cars` WHERE `Date` >= 2000";
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            Console.WriteLine("Márka - Típus\tMotorszám - Gyártási év");
+            while (reader.Read())
+            {
+                Console.WriteLine($"\n{reader.GetString(1)}\t{reader.GetString(2)}\n{reader.GetString(3)}\t{reader.GetInt32(4)}");
+            }
+
+                conn.Connection.Close();
+        }
         static void Main(string[] args)
         {
             feltolt();
@@ -99,6 +113,7 @@ namespace Auto
             upDateCar();
             delCar();
             getCarData();
+            getCarsAfter2000();
             Console.ReadLine();
         }
     }
