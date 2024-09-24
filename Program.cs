@@ -54,6 +54,14 @@ namespace Auto
             cmd.ExecuteNonQuery();
             conn.Connection.Close();
         }
+        public static void changeCarDate(int id,int ev)
+        {
+            conn.Connection.Open();
+            string sql = $"UPDATE `cars` SET `Date`='{ev}' WHERE `Id` = {id}";
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.ExecuteNonQuery();
+            conn.Connection.Close();
+        }
         static void Main(string[] args)
         {
             feltolt();
@@ -62,6 +70,7 @@ namespace Auto
                 Console.WriteLine($"Autó gyártója: {car.Brand}, azonosítója: {car.Id}");
             }
             addNewCar();
+            changeCarDate(123,2024);
             Console.ReadLine();
         }
     }
