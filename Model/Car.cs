@@ -12,6 +12,6 @@ namespace Auto.Model
         public string Brand { get; set; }
         public string Type { get; set; }
         public string License { get; set; }
-        public DateTime Date { get; set; }
+        public int Date { get; set; }
     }
 }
