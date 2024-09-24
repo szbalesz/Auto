@@ -76,6 +76,18 @@ namespace Auto
             cmd.ExecuteNonQuery();
             conn.Connection.Close();
         }
+        public static void getCarData()
+        {
+            conn.Connection.Open();
+            Console.Write("Kérem az autó azonosítóját: ");
+            int id = int.Parse(Console.ReadLine());
+            string sql = $"SELECT * FROM `cars` WHERE `Id` = {id}";
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Console.WriteLine($"\nMárka: {reader.GetString(1)}\nTípus: {reader.GetString(2)}\nMotorszám: {reader.GetString(3)}\nGyártási év: {reader.GetInt32(4)}");
+            conn.Connection.Close();
+        }
         static void Main(string[] args)
         {
             feltolt();
@@ -86,6 +98,7 @@ namespace Auto
             addNewCar();
             upDateCar();
             delCar();
+            getCarData();
             Console.ReadLine();
         }
     }
