@@ -54,23 +54,27 @@ namespace Auto
             cmd.ExecuteNonQuery();
             conn.Connection.Close();
         }
-        public static void changeCarDate(int id,int ev)
+        public static void upDateCar()
         {
             conn.Connection.Open();
-            string sql = $"UPDATE `cars` SET `Date`='{ev}' WHERE `Id` = {id}";
+            Console.Write("Kérem az autó azonosítóját: ");
+            int id = int.Parse(Console.ReadLine());
+            Console.Write("Kérem az autó gyártási évét: ");
+            int date = int.Parse(Console.ReadLine());
+            string sql = $"UPDATE `cars` SET `Date`='{date}' WHERE `Id` = {id}";
             MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
             cmd.ExecuteNonQuery();
             conn.Connection.Close();
         }
         static void Main(string[] args)
         {
-            feltolt();
+            /*feltolt();
             foreach (Car car in cars)
             {
                 Console.WriteLine($"Autó gyártója: {car.Brand}, azonosítója: {car.Id}");
             }
-            addNewCar();
-            changeCarDate(123,2024);
+            addNewCar();*/
+            upDateCar();
             Console.ReadLine();
         }
     }
